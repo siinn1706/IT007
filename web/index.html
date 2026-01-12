@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT007 - Ôn Tập Hệ Điều Hành</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">🚀</span>
+            <span class="brand-text">IT007 OS Review</span>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="#" class="nav-link active" data-page="home">Trang chủ</a></li>
+            <li><a href="#" class="nav-link" data-page="takenote">📖 Takenote</a></li>
+            <li><a href="#" class="nav-link" data-page="ch5">Ch5: Đồng bộ</a></li>
+            <li><a href="#" class="nav-link" data-page="ch6">Ch6: Deadlock</a></li>
+            <li><a href="#" class="nav-link" data-page="ch7">Ch7: Bộ nhớ</a></li>
+            <li><a href="#" class="nav-link" data-page="ch8">Ch8: VM</a></li>
+            <li><a href="#" class="nav-link nav-quiz" data-page="quiz">📝 Trắc nghiệm</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1 class="hero-title">
+                    <span class="title-line">Ôn Tập</span>
+                    <span class="title-line gradient-text">Hệ Điều Hành</span>
+                </h1>
+                <p class="hero-subtitle">Chương 5 - 8 | Cuối kỳ</p>
+                <div class="hero-cards">
+                    <div class="chapter-card takenote-card" data-target="takenote">
+                        <div class="card-icon">📖</div>
+                        <h3>Takenote</h3>
+                        <p>Ghi chú tổng hợp</p>
+                        <span class="card-tag">Keywords • Checklist</span>
+                    </div>
+                    <div class="chapter-card" data-target="ch5">
+                        <div class="card-icon">🔄</div>
+                        <h3>Chương 5</h3>
+                        <p>Đồng bộ hóa</p>
+                        <span class="card-tag">Semaphore • Monitor</span>
+                    </div>
+                    <div class="chapter-card" data-target="ch6">
+                        <div class="card-icon">🔒</div>
+                        <h3>Chương 6</h3>
+                        <p>Deadlock</p>
+                        <span class="card-tag">Coffman • Banker</span>
+                    </div>
+                    <div class="chapter-card" data-target="ch7">
+                        <div class="card-icon">💾</div>
+                        <h3>Chương 7</h3>
+                        <p>Quản lý bộ nhớ</p>
+                        <span class="card-tag">Paging • TLB</span>
+                    </div>
+                    <div class="chapter-card" data-target="ch8">
+                        <div class="card-icon">☁️</div>
+                        <h3>Chương 8</h3>
+                        <p>Bộ nhớ ảo</p>
+                        <span class="card-tag">Page Fault • LRU</span>
+                    </div>
+                </div>
+                <a href="#" class="cta-button" data-target="quiz">
+                    <span>Làm trắc nghiệm ngay</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Takenote Page -->
+        <section id="takenote" class="page">
+            <div class="page-header">
+                <span class="chapter-badge takenote-badge">📖 Takenote</span>
+                <h1>Ghi Chú Tổng Hợp</h1>
+                <p class="page-desc">Tóm tắt kiến thức + Keywords tiếng Anh + Checklist ôn thi</p>
+            </div>
+            <div class="content-wrapper">
+                <aside class="toc">
+                    <h4>Mục lục</h4>
+                    <ul>
+                        <li><a href="#note-ch5">Ch5: Đồng bộ</a></li>
+                        <li><a href="#note-ch6">Ch6: Deadlock</a></li>
+                        <li><a href="#note-ch7">Ch7: Bộ nhớ</a></li>
+                        <li><a href="#note-ch8">Ch8: VM</a></li>
+                        <li><a href="#keywords">Keywords</a></li>
+                        <li><a href="#checklist">Checklist</a></li>
+                    </ul>
+                </aside>
+                <article class="content">
+                    <!-- Chapter 5 Notes -->
+                    <section class="theory-section" id="note-ch5">
+                        <h2>🔄 Chương 5 — Process Synchronization</h2>
+                        
+                        <div class="note-subsection">
+                            <h3>5.1 Race condition & Vùng tranh chấp</h3>
+                            <div class="keyword-list">
+                                <span class="keyword">Shared data</span>
+                                <span class="keyword">Race condition</span>
+                                <span class="keyword">Critical section</span>
+                            </div>
+                            <ul class="styled-list">
+                                <li><strong>Shared data</strong>: biến toàn cục, bảng dữ liệu, file, cấu trúc dữ liệu dùng chung</li>
+                                <li><strong>Race condition</strong>: kết quả phụ thuộc vào <em>thứ tự xen kẽ (interleaving)</em> giữa các tiến trình</li>
+                                <li><strong>Critical section problem</strong>: thiết kế cách vào "vùng tranh chấp" đúng</li>
+                            </ul>
+                            <div class="structure-box">
+                                <h4>Cấu trúc tiến trình khi có CS:</h4>
+                                <div class="code-block">
+                                    <pre><code><span class="keyword">Entry section</span>    → Đoạn xin quyền vào
+<span class="keyword">Critical section</span> → Đoạn đụng shared data  
+<span class="keyword">Exit section</span>     → Đoạn nhả quyền
+<span class="keyword">Remainder</span>        → Phần còn lại</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>5.2 Tiêu chuẩn lời giải (3 tiêu chuẩn kinh điển)</h3>
+                            <div class="criteria-grid">
+                                <div class="criteria-card">
+                                    <h4>1. Mutual Exclusion</h4>
+                                    <p>Tại 1 thời điểm <strong>chỉ 1</strong> tiến trình được vào CS</p>
+                                </div>
+                                <div class="criteria-card">
+                                    <h4>2. Progress</h4>
+                                    <p>Nếu CS trống, việc chọn tiến trình vào <strong>không được trì hoãn vô hạn</strong></p>
+                                </div>
+                                <div class="criteria-card">
+                                    <h4>3. Bounded Waiting</h4>
+                                    <p>Không tiến trình nào bị chờ <strong>mãi mãi</strong> → tránh starvation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>5.3 Giải pháp phần mềm</h3>
+                            <div class="keyword-list">
+                                <span class="keyword">turn</span>
+                                <span class="keyword">flag[]</span>
+                                <span class="keyword">Peterson</span>
+                                <span class="keyword">Bakery</span>
+                            </div>
+                            <ul class="styled-list">
+                                <li><strong>Peterson's algorithm</strong> (2 tiến trình): thỏa cả 3 tiêu chuẩn</li>
+                                <li><strong>Bakery algorithm</strong> (n tiến trình): "lấy số thứ tự" như mua bánh</li>
+                            </ul>
+                            <div class="warning-box">
+                                <strong>⚠️ Lưu ý:</strong> Giải pháp phần mềm thường <strong>tốn CPU</strong> vì dùng vòng while chờ (busy waiting)
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>5.4 Hỗ trợ phần cứng</h3>
+                            <div class="keyword-list">
+                                <span class="keyword">Atomic</span>
+                                <span class="keyword">test_and_set</span>
+                                <span class="keyword">compare_and_swap</span>
+                                <span class="keyword">Spinlock</span>
+                            </div>
+                            <ul class="styled-list">
+                                <li><strong>Atomic instruction</strong>: thao tác không thể bị chia nhỏ, thực hiện như 1 bước</li>
+                                <li><strong>test_and_set()</strong>: vừa kiểm tra vừa gán (trả về giá trị cũ)</li>
+                                <li><strong>compare_and_swap (CAS)</strong>: nếu giá trị đúng như mong đợi thì mới gán mới</li>
+                                <li><strong>Spinlock</strong>: khóa kiểu "xoay vòng chờ" (busy waiting)</li>
+                            </ul>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>5.5 Công cụ đồng bộ mức HĐH</h3>
+                            <div class="tools-grid">
+                                <div class="tool-card">
+                                    <h4>Mutex Lock</h4>
+                                    <p>Khóa loại trừ tương hỗ</p>
+                                    <code>lock() / unlock()</code>
+                                </div>
+                                <div class="tool-card">
+                                    <h4>Semaphore</h4>
+                                    <p>Counting (đếm) / Binary (0/1)</p>
+                                    <code>wait(P) / signal(V)</code>
+                                </div>
+                                <div class="tool-card">
+                                    <h4>Monitor</h4>
+                                    <p>Đóng gói data + hàm, tự đảm bảo ME</p>
+                                    <code>condition variable</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>5.6 Liveness & Các lỗi hay gặp</h3>
+                            <div class="error-grid">
+                                <div class="error-card priority">
+                                    <h4>Priority Inversion</h4>
+                                    <p>Tiến trình ưu tiên cao bị kẹt vì tiến trình ưu tiên thấp đang giữ khóa</p>
+                                </div>
+                                <div class="error-card deadlock">
+                                    <h4>Deadlock</h4>
+                                    <p>Kẹt vòng tròn, không ai đi tiếp được</p>
+                                </div>
+                                <div class="error-card starvation">
+                                    <h4>Starvation</h4>
+                                    <p>"Nhịn đói" mãi vì luôn bị ưu tiên thấp</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>5.7 Bài toán kinh điển</h3>
+                            <div class="classic-problems">
+                                <div class="problem-item">
+                                    <h4>🥫 Bounded-Buffer (Producer/Consumer)</h4>
+                                    <p>Semaphore: <code>mutex</code>, <code>empty</code>, <code>full</code></p>
+                                </div>
+                                <div class="problem-item">
+                                    <h4>📚 Readers-Writers</h4>
+                                    <p>Nhiều reader đọc cùng lúc, writer cần độc quyền</p>
+                                </div>
+                                <div class="problem-item">
+                                    <h4>🍽️ Dining Philosophers</h4>
+                                    <p>Giải pháp: bất đối xứng, chỉ cầm khi đủ 2 đũa</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Chapter 6 Notes -->
+                    <section class="theory-section" id="note-ch6">
+                        <h2>🔒 Chương 6 — Deadlocks</h2>
+
+                        <div class="note-subsection">
+                            <h3>6.1 Deadlock là gì?</h3>
+                            <div class="highlight-box">
+                                <p><strong>Deadlock</strong>: một tập tiến trình bị kẹt vì <em>mỗi tiến trình đang giữ ít nhất 1 tài nguyên và chờ tài nguyên</em> do tiến trình khác giữ.</p>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>6.2 4 Điều kiện Coffman</h3>
+                            <div class="coffman-grid">
+                                <div class="coffman-card">
+                                    <span class="num">1</span>
+                                    <h4>Mutual Exclusion</h4>
+                                    <p>Có tài nguyên chỉ cho 1 tiến trình dùng (non-shareable)</p>
+                                </div>
+                                <div class="coffman-card">
+                                    <span class="num">2</span>
+                                    <h4>Hold and Wait</h4>
+                                    <p>Đang giữ A vẫn tiếp tục đợi thêm B</p>
+                                </div>
+                                <div class="coffman-card">
+                                    <span class="num">3</span>
+                                    <h4>No Preemption</h4>
+                                    <p>Tài nguyên không bị "giật lại" cưỡng bức</p>
+                                </div>
+                                <div class="coffman-card">
+                                    <span class="num">4</span>
+                                    <h4>Circular Wait</h4>
+                                    <p>Tồn tại vòng chờ P0→P1→...→P0</p>
+                                </div>
+                            </div>
+                            <div class="tip-box">
+                                <strong>💡 Mẹo thi:</strong> Chỉ cần "phá" <strong>ít nhất 1 điều kiện</strong> ⇒ ngăn deadlock
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>6.3 RAG & Wait-for Graph</h3>
+                            <div class="two-col">
+                                <div class="col-box">
+                                    <h4>Resource-Allocation Graph (RAG)</h4>
+                                    <ul>
+                                        <li><strong>Request edge</strong>: Pi → Rj (đang xin)</li>
+                                        <li><strong>Assignment edge</strong>: Rj → Pi (đang được cấp)</li>
+                                    </ul>
+                                </div>
+                                <div class="col-box">
+                                    <h4>Wait-for Graph</h4>
+                                    <p>Rút gọn RAG chỉ còn process</p>
+                                    <p>Pi→Pj nếu Pi chờ tài nguyên do Pj giữ</p>
+                                </div>
+                            </div>
+                            <div class="warning-box">
+                                <strong>⚠️ Kết luận quan trọng:</strong>
+                                <ul>
+                                    <li>Mỗi resource type <strong>1 instance</strong>: có chu trình ⇔ deadlock</li>
+                                    <li><strong>Nhiều instance</strong>: có chu trình <strong>chưa chắc</strong> deadlock</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>6.4 Cách xử lý Deadlock</h3>
+                            <div class="handling-methods">
+                                <div class="method-card prevent">
+                                    <h4>1. Prevention</h4>
+                                    <p>Phá 1 trong 4 điều kiện</p>
+                                </div>
+                                <div class="method-card avoid">
+                                    <h4>2. Avoidance</h4>
+                                    <p>Chỉ cấp phát nếu vẫn ở <strong>safe state</strong></p>
+                                </div>
+                                <div class="method-card detect">
+                                    <h4>3. Detection & Recovery</h4>
+                                    <p>Cho phép xảy ra, rồi phát hiện và xử lý</p>
+                                </div>
+                                <div class="method-card ignore">
+                                    <h4>4. Ignore</h4>
+                                    <p>Ostrich algorithm - "lờ đi"</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>6.5 Banker's Algorithm</h3>
+                            <div class="banker-matrices">
+                                <div class="matrix-item">
+                                    <code>Available[j]</code>
+                                    <p>Số instance còn rảnh của Rj</p>
+                                </div>
+                                <div class="matrix-item">
+                                    <code>Max[i,j]</code>
+                                    <p>Pi cần tối đa bao nhiêu Rj</p>
+                                </div>
+                                <div class="matrix-item">
+                                    <code>Allocation[i,j]</code>
+                                    <p>Pi đang giữ bao nhiêu Rj</p>
+                                </div>
+                                <div class="matrix-item highlight">
+                                    <code>Need[i,j]</code>
+                                    <p><strong>= Max - Allocation</strong></p>
+                                </div>
+                            </div>
+                            <div class="tip-box">
+                                <strong>💡 Safety algorithm:</strong> Thử "giả lập" cho các tiến trình có Need ≤ Available chạy xong, trả tài nguyên lại. Nếu cho chạy hết được ⇒ <strong>safe</strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Chapter 7 Notes -->
+                    <section class="theory-section" id="note-ch7">
+                        <h2>💾 Chương 7 — Memory Management</h2>
+
+                        <div class="note-subsection">
+                            <h3>7.1 Cấp phát liên tục & Partitioning</h3>
+                            <div class="two-col">
+                                <div class="col-box">
+                                    <h4>Fixed Partitioning</h4>
+                                    <p>Chia RAM thành các vùng cố định</p>
+                                    <p class="bad">Dễ lãng phí (internal fragmentation)</p>
+                                </div>
+                                <div class="col-box">
+                                    <h4>Dynamic Partitioning</h4>
+                                    <p>Tạo vùng theo nhu cầu</p>
+                                    <p class="bad">Xuất hiện holes (external fragmentation)</p>
+                                </div>
+                            </div>
+                            <div class="fragmentation-box">
+                                <div class="frag-item external">
+                                    <h4>External Fragmentation</h4>
+                                    <p>Tổng trống đủ nhưng bị chia nhỏ, không ghép được</p>
+                                    <span class="solution">Giải pháp: Compaction (kết khối)</span>
+                                </div>
+                                <div class="frag-item internal">
+                                    <h4>Internal Fragmentation</h4>
+                                    <p>Cấp dư bên trong 1 vùng (do làm tròn kích thước)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>7.2 Chiến lược chọn Hole</h3>
+                            <div class="fit-strategies">
+                                <div class="fit-item first">
+                                    <h4>First Fit</h4>
+                                    <p>Hole đủ lớn <strong>đầu tiên</strong></p>
+                                    <span class="tag">Nhanh, thường dùng</span>
+                                </div>
+                                <div class="fit-item best">
+                                    <h4>Best Fit</h4>
+                                    <p>Hole <strong>vừa khít nhất</strong></p>
+                                    <span class="tag">Dễ tạo lỗ nhỏ</span>
+                                </div>
+                                <div class="fit-item worst">
+                                    <h4>Worst Fit</h4>
+                                    <p>Hole <strong>lớn nhất</strong></p>
+                                    <span class="tag">Lỗ còn lại vẫn to</span>
+                                </div>
+                                <div class="fit-item next">
+                                    <h4>Next Fit</h4>
+                                    <p>Từ <strong>vị trí cấp phát gần nhất</strong></p>
+                                    <span class="tag">Không quay đầu</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>7.3 Paging (Phân trang)</h3>
+                            <div class="keyword-list">
+                                <span class="keyword">Page</span>
+                                <span class="keyword">Frame</span>
+                                <span class="keyword">Page table</span>
+                            </div>
+                            <ul class="styled-list">
+                                <li><strong>Page</strong>: đơn vị của không gian địa chỉ logic/ảo</li>
+                                <li><strong>Frame</strong>: đơn vị của RAM vật lý (cùng kích thước với page)</li>
+                                <li><strong>Page table</strong>: ánh xạ <code>page number → frame number</code></li>
+                            </ul>
+                            <div class="formula-box">
+                                <h4>Tách địa chỉ:</h4>
+                                <p>Địa chỉ = <code>page number (p)</code> + <code>offset (d)</code></p>
+                            </div>
+                            <div class="example-box">
+                                <strong>📝 Ví dụ hay thi:</strong> VA 32-bit, page size = 4KB = 2<sup>12</sup>
+                                <ul>
+                                    <li>offset = <strong>12 bit</strong></li>
+                                    <li>page number = 32 − 12 = <strong>20 bit</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>7.4 TLB & EAT</h3>
+                            <div class="definition-box">
+                                <p><strong>TLB (Translation Lookaside Buffer)</strong>: cache phần cứng lưu ánh xạ page→frame gần đây</p>
+                            </div>
+                            <div class="formula-highlight">
+                                <h4>EAT (Effective Access Time)</h4>
+                                <span class="formula">EAT = (2 − α)x + ε</span>
+                            </div>
+                            <div class="variables">
+                                <p><code>α</code> = Hit ratio (tỉ lệ tìm thấy trong TLB)</p>
+                                <p><code>ε</code> = Thời gian tra TLB</p>
+                                <p><code>x</code> = 1 lần truy xuất RAM</p>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>7.5 Paging vs Segmentation</h3>
+                            <div class="comparison-table">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Paging</th>
+                                            <th>Segmentation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Kích thước</td>
+                                            <td><strong>Bằng nhau</strong></td>
+                                            <td><strong>Không đều</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chia theo</td>
+                                            <td>Vật lý</td>
+                                            <td>Logic (code/data/stack)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fragmentation</td>
+                                            <td>Internal</td>
+                                            <td>External</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Chapter 8 Notes -->
+                    <section class="theory-section" id="note-ch8">
+                        <h2>☁️ Chương 8 — Virtual Memory</h2>
+
+                        <div class="note-subsection">
+                            <h3>8.1 Khái niệm</h3>
+                            <div class="highlight-box">
+                                <p><strong>Virtual memory</strong>: cho phép tiến trình "thấy" không gian địa chỉ <em>lớn hơn RAM thật</em></p>
+                            </div>
+                            <div class="keyword-list">
+                                <span class="keyword">Demand Paging</span>
+                                <span class="keyword">Demand Segmentation</span>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>8.2 Demand Paging & Page Fault</h3>
+                            <ul class="styled-list">
+                                <li><strong>Valid/Invalid bit</strong>: đánh dấu trang có đang nằm trong RAM không</li>
+                                <li><strong>Page fault</strong>: CPU tham chiếu 1 page chưa có trong RAM</li>
+                            </ul>
+                            <div class="process-flow">
+                                <h4>Luồng xử lý Page Fault:</h4>
+                                <div class="flow-steps">
+                                    <span class="step">1. Trap vào HĐH</span>
+                                    <span class="step">2. Kiểm tra hợp lệ</span>
+                                    <span class="step">3. Tìm frame trống / replacement</span>
+                                    <span class="step">4. Đọc trang từ disk</span>
+                                    <span class="step">5. Cập nhật page table/TLB</span>
+                                    <span class="step">6. Chạy lại lệnh</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>8.3 Page Replacement Algorithms</h3>
+                            <div class="algo-grid">
+                                <div class="algo-card fifo">
+                                    <h4>FIFO</h4>
+                                    <p>Trang <strong>vào trước ra trước</strong></p>
+                                    <div class="warning-tag">⚠️ Belady's anomaly</div>
+                                </div>
+                                <div class="algo-card opt">
+                                    <h4>OPT (Optimal)</h4>
+                                    <p>Thay trang dùng <strong>xa nhất trong tương lai</strong></p>
+                                    <div class="best-tag">Lý thuyết, làm mốc</div>
+                                </div>
+                                <div class="algo-card lru">
+                                    <h4>LRU</h4>
+                                    <p>Thay trang <strong>lâu không dùng nhất</strong></p>
+                                    <div class="good-tag">Thực tế, hiệu quả</div>
+                                </div>
+                                <div class="algo-card clock">
+                                    <h4>Second-chance / Clock</h4>
+                                    <p>Dùng <strong>reference bit</strong></p>
+                                    <div class="note-tag">Xấp xỉ LRU</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="note-subsection">
+                            <h3>8.4 Thrashing & Working Set</h3>
+                            <div class="thrashing-section">
+                                <div class="definition-box">
+                                    <p><strong>Thrashing</strong>: page fault quá nhiều ⇒ CPU rảnh vì cứ chờ I/O đọc trang ⇒ hệ thống "trì trệ"</p>
+                                </div>
+                                <div class="definition-box">
+                                    <p><strong>Locality</strong>: chương trình hay truy cập một <em>cụm trang</em> trong 1 khoảng thời gian</p>
+                                </div>
+                                <div class="definition-box">
+                                    <p><strong>Working Set (WS)</strong>: với cửa sổ Δ, <code>WS(Δ)</code> là tập trang được dùng gần đây nhất</p>
+                                </div>
+                                <div class="tip-box">
+                                    <strong>💡 Ý tưởng:</strong> Nếu cấp đủ frame để chứa working set ⇒ giảm thrashing
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Keywords Section -->
+                    <section class="theory-section" id="keywords">
+                        <h2>🔤 Keywords Tiếng Anh Hay Gặp</h2>
+                        <div class="keywords-grid">
+                            <div class="kw-group">
+                                <h4>Chapter 5</h4>
+                                <ul>
+                                    <li><strong>Race condition</strong> - tranh chấp do xen kẽ</li>
+                                    <li><strong>Critical section</strong> - vùng tranh chấp</li>
+                                    <li><strong>Mutual exclusion</strong> - loại trừ tương hỗ</li>
+                                    <li><strong>Progress</strong> - tiến triển</li>
+                                    <li><strong>Bounded waiting</strong> - chờ đợi giới hạn</li>
+                                    <li><strong>Busy waiting / Spinlock</strong> - chờ bằng vòng lặp</li>
+                                    <li><strong>Mutex</strong> - khóa loại trừ tương hỗ</li>
+                                    <li><strong>Semaphore</strong> - đếm tài nguyên</li>
+                                    <li><strong>Monitor</strong> - cấu trúc đồng bộ bậc cao</li>
+                                    <li><strong>Condition variable</strong> - biến điều kiện</li>
+                                </ul>
+                            </div>
+                            <div class="kw-group">
+                                <h4>Chapter 6</h4>
+                                <ul>
+                                    <li><strong>Deadlock</strong> - kẹt vòng tròn</li>
+                                    <li><strong>Starvation</strong> - đói tài nguyên</li>
+                                    <li><strong>RAG</strong> - đồ thị cấp phát tài nguyên</li>
+                                    <li><strong>Wait-for graph</strong> - đồ thị đợi</li>
+                                    <li><strong>Safe state</strong> - trạng thái an toàn</li>
+                                    <li><strong>Safe sequence</strong> - chuỗi an toàn</li>
+                                    <li><strong>Banker's algorithm</strong> - giải thuật banker</li>
+                                </ul>
+                            </div>
+                            <div class="kw-group">
+                                <h4>Chapter 7</h4>
+                                <ul>
+                                    <li><strong>Paging</strong> - phân trang</li>
+                                    <li><strong>Frame</strong> - khung trang</li>
+                                    <li><strong>Page table</strong> - bảng trang</li>
+                                    <li><strong>TLB</strong> - bộ đệm dịch địa chỉ</li>
+                                    <li><strong>EAT</strong> - thời gian truy xuất hiệu dụng</li>
+                                    <li><strong>External fragmentation</strong> - phân mảnh ngoại</li>
+                                    <li><strong>Internal fragmentation</strong> - phân mảnh nội</li>
+                                </ul>
+                            </div>
+                            <div class="kw-group">
+                                <h4>Chapter 8</h4>
+                                <ul>
+                                    <li><strong>Virtual memory</strong> - bộ nhớ ảo</li>
+                                    <li><strong>Demand paging</strong> - phân trang theo yêu cầu</li>
+                                    <li><strong>Page fault</strong> - lỗi trang</li>
+                                    <li><strong>FIFO / OPT / LRU</strong> - thuật toán thay trang</li>
+                                    <li><strong>Belady's anomaly</strong> - nghịch lý Belady</li>
+                                    <li><strong>Thrashing</strong> - trì trệ</li>
+                                    <li><strong>Locality</strong> - tính cục bộ</li>
+                                    <li><strong>Working set</strong> - tập làm việc</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Checklist Section -->
+                    <section class="theory-section" id="checklist">
+                        <h2>✅ Checklist Ôn Thi Nhanh</h2>
+                        <div class="checklist-container">
+                            <div class="checklist-chapter">
+                                <h3>📌 Chapter 5 - Synchronization</h3>
+                                <ul class="check-list">
+                                    <li>3 tiêu chuẩn CS (Mutual exclusion, Progress, Bounded waiting)</li>
+                                    <li>Peterson algorithm</li>
+                                    <li>test_and_set / compare_and_swap (CAS)</li>
+                                    <li>Semaphore vs Mutex</li>
+                                    <li>Monitor + Condition variable</li>
+                                    <li>Bounded-buffer / Readers-Writers / Dining Philosophers</li>
+                                </ul>
+                            </div>
+                            <div class="checklist-chapter">
+                                <h3>📌 Chapter 6 - Deadlock</h3>
+                                <ul class="check-list">
+                                    <li>4 điều kiện Coffman</li>
+                                    <li>RAG & Wait-for graph</li>
+                                    <li>Prevention vs Avoidance vs Detection vs Recovery</li>
+                                    <li>Safe sequence + Banker (Available/Max/Allocation/Need)</li>
+                                </ul>
+                            </div>
+                            <div class="checklist-chapter">
+                                <h3>📌 Chapter 7 - Memory</h3>
+                                <ul class="check-list">
+                                    <li>First / Best / Worst / Next fit</li>
+                                    <li>Internal vs External fragmentation + Compaction</li>
+                                    <li>Paging + địa chỉ 32-bit / 4KB</li>
+                                    <li>TLB + EAT formula</li>
+                                </ul>
+                            </div>
+                            <div class="checklist-chapter">
+                                <h3>📌 Chapter 8 - Virtual Memory</h3>
+                                <ul class="check-list">
+                                    <li>Demand paging + xử lý page fault</li>
+                                    <li>FIFO / OPT / LRU + Belady</li>
+                                    <li>Frame allocation</li>
+                                    <li>Thrashing + Working set</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </section>
+
+        <!-- Chapter 5: Synchronization -->
+        <section id="ch5" class="page">
+            <div class="page-header">
+                <span class="chapter-badge">Chương 5</span>
+                <h1>Đồng Bộ Hóa (Synchronization)</h1>
+                <p class="page-desc">Critical Section, Semaphore, Monitor & Các bài toán kinh điển</p>
+            </div>
+            <div class="content-wrapper">
+                <aside class="toc">
+                    <h4>Mục lục</h4>
+                    <ul>
+                        <li><a href="#cs">Critical Section</a></li>
+                        <li><a href="#race">Race Condition</a></li>
+                        <li><a href="#semaphore">Semaphore</a></li>
+                        <li><a href="#monitor">Monitor</a></li>
+                        <li><a href="#problems">Bài toán kinh điển</a></li>
+                    </ul>
+                </aside>
+                <article class="content">
+                    <section class="theory-section" id="cs">
+                        <h2>🔐 Vùng Tranh Chấp (Critical Section)</h2>
+                        <div class="highlight-box">
+                            <p>Đoạn mã thao tác <strong>dữ liệu chia sẻ</strong> giữa các tiến trình/luồng.</p>
+                        </div>
+                        <h3>3 Tính chất bắt buộc:</h3>
+                        <div class="property-grid">
+                            <div class="property-card">
+                                <span class="property-num">1</span>
+                                <h4>Mutual Exclusion</h4>
+                                <p>Tại một thời điểm chỉ <strong>1 tiến trình</strong> được ở trong CS</p>
+                            </div>
+                            <div class="property-card">
+                                <span class="property-num">2</span>
+                                <h4>Progress</h4>
+                                <p>CS rỗng + có người muốn vào → phải chọn được ai vào (không kẹt vô lý)</p>
+                            </div>
+                            <div class="property-card">
+                                <span class="property-num">3</span>
+                                <h4>Bounded Waiting</h4>
+                                <p>Mỗi tiến trình chỉ chờ <strong>hữu hạn</strong> lượt (tránh starvation)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="race">
+                        <h2>⚡ Race Condition</h2>
+                        <div class="definition-box">
+                            <p><strong>Định nghĩa:</strong> Kết quả sai/không ổn định do <em>truy cập đồng thời dữ liệu chia sẻ</em> mà không có đồng bộ.</p>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="semaphore">
+                        <h2>🚦 Semaphore</h2>
+                        <div class="two-col">
+                            <div class="col-box">
+                                <h4>Binary Semaphore</h4>
+                                <p>Giá trị 0/1, dùng như mutex</p>
+                                <p class="note">Không nhất thiết có owner</p>
+                            </div>
+                            <div class="col-box">
+                                <h4>Counting Semaphore</h4>
+                                <p>Giá trị ≥ 0, quản lý k tài nguyên</p>
+                                <p class="note">Khởi tạo S = k</p>
+                            </div>
+                        </div>
+                        <h3>Hai thao tác cơ bản:</h3>
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang">Pseudocode</span>
+                            </div>
+                            <pre><code><span class="keyword">wait</span>(S):     <span class="comment">// P operation</span>
+    S = S - 1
+    <span class="keyword">if</span> S < 0 <span class="keyword">then</span> block()
+
+<span class="keyword">signal</span>(S):   <span class="comment">// V operation</span>
+    S = S + 1
+    <span class="keyword">if</span> S ≤ 0 <span class="keyword">then</span> wakeup()</code></pre>
+                        </div>
+                        <div class="warning-box">
+                            <strong>⚠️ Lưu ý:</strong> <code>wakeup()</code> là đưa tiến trình về <strong>ready queue</strong>, không phải vào block.
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="monitor">
+                        <h2>🖥️ Monitor</h2>
+                        <div class="definition-box">
+                            <p>Gom dữ liệu chia sẻ + hàm thao tác vào 1 khối, đảm bảo <strong>chỉ 1 luồng vào monitor</strong> tại một thời điểm.</p>
+                        </div>
+                        <h3>Condition Variable:</h3>
+                        <ul class="styled-list">
+                            <li><code>wait(cv)</code>: Nhả lock của monitor và ngủ</li>
+                            <li><code>signal(cv)</code>: Đánh thức 1 tiến trình đang đợi</li>
+                        </ul>
+                        <div class="tip-box">
+                            <strong>💡 Mesa semantics:</strong> Sau signal, tiến trình được đánh thức phải <strong>kiểm tra lại điều kiện</strong> bằng vòng <code>while</code>.
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="problems">
+                        <h2>📚 Bài Toán Kinh Điển</h2>
+                        
+                        <div class="problem-card">
+                            <h3>Bounded-Buffer (Producer/Consumer)</h3>
+                            <p>Semaphore cần dùng:</p>
+                            <ul>
+                                <li><code>mutex = 1</code> (khóa truy cập buffer)</li>
+                                <li><code>empty = N</code> (số ô trống)</li>
+                                <li><code>full = 0</code> (số ô đầy)</li>
+                            </ul>
+                            <div class="code-block">
+                                <pre><code><span class="comment">// Producer</span>
+wait(empty) → wait(mutex) → put → signal(mutex) → signal(full)
+
+<span class="comment">// Consumer</span>
+wait(full) → wait(mutex) → get → signal(mutex) → signal(empty)</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="problem-card">
+                            <h3>Dining Philosophers - Tránh Deadlock</h3>
+                            <ul class="styled-list">
+                                <li>Chỉ cho tối đa <strong>4 người</strong> ngồi vào bàn (nếu 5 đũa)</li>
+                                <li>Bất đối xứng: chẵn cầm phải trước, lẻ cầm trái trước</li>
+                                <li>Chỉ cầm khi <strong>cả 2 đũa sẵn sàng</strong></li>
+                            </ul>
+                            <div class="warning-box">
+                                <strong>⚠️ Chú ý:</strong> Tránh deadlock ≠ Tránh starvation
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="theory-section">
+                        <h2>🧠 Memory Barrier</h2>
+                        <p>CPU/compiler hiện đại có thể <strong>đảo thứ tự đọc/ghi</strong> để tối ưu.</p>
+                        <div class="definition-box">
+                            <p><strong>Memory barrier:</strong> Chỉ thị "chặn" để đảm bảo thứ tự hiển thị bộ nhớ như mong muốn khi đồng bộ.</p>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </section>
+
+        <!-- Chapter 6: Deadlock -->
+        <section id="ch6" class="page">
+            <div class="page-header">
+                <span class="chapter-badge">Chương 6</span>
+                <h1>Deadlock</h1>
+                <p class="page-desc">4 điều kiện Coffman, RAG, Banker Algorithm</p>
+            </div>
+            <div class="content-wrapper">
+                <aside class="toc">
+                    <h4>Mục lục</h4>
+                    <ul>
+                        <li><a href="#def6">Định nghĩa</a></li>
+                        <li><a href="#coffman">4 Điều kiện Coffman</a></li>
+                        <li><a href="#rag">RAG & WFG</a></li>
+                        <li><a href="#handling">Xử lý Deadlock</a></li>
+                        <li><a href="#banker">Banker Algorithm</a></li>
+                    </ul>
+                </aside>
+                <article class="content">
+                    <section class="theory-section" id="def6">
+                        <h2>🔒 Định Nghĩa Deadlock</h2>
+                        <div class="highlight-box">
+                            <p>Tập tiến trình <strong>mỗi thằng giữ một phần tài nguyên</strong> và <strong>chờ phần còn lại</strong>, tạo vòng chờ.</p>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="coffman">
+                        <h2>⚙️ 4 Điều Kiện Coffman</h2>
+                        <p class="emphasis">Deadlock xảy ra khi <strong>đủ cả 4</strong> điều kiện:</p>
+                        <div class="condition-grid">
+                            <div class="condition-card">
+                                <span class="condition-num">1</span>
+                                <h4>Mutual Exclusion</h4>
+                                <p>Ít nhất 1 tài nguyên được giữ theo chế độ không chia sẻ</p>
+                            </div>
+                            <div class="condition-card">
+                                <span class="condition-num">2</span>
+                                <h4>Hold and Wait</h4>
+                                <p>Tiến trình giữ ít nhất 1 tài nguyên và chờ thêm tài nguyên khác</p>
+                            </div>
+                            <div class="condition-card">
+                                <span class="condition-num">3</span>
+                                <h4>No Preemption</h4>
+                                <p>Tài nguyên chỉ được giải phóng khi tiến trình tự nguyện trả</p>
+                            </div>
+                            <div class="condition-card">
+                                <span class="condition-num">4</span>
+                                <h4>Circular Wait</h4>
+                                <p>Tồn tại chuỗi chờ vòng: P1→P2→...→Pn→P1</p>
+                            </div>
+                        </div>
+                        <div class="tip-box">
+                            <strong>💡 Mẹo nhớ:</strong> Chỉ cần <strong>thiếu 1 điều kiện</strong> thì deadlock không xảy ra!
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="rag">
+                        <h2>📊 RAG & WFG</h2>
+                        <div class="two-col">
+                            <div class="col-box">
+                                <h4>Resource Allocation Graph (RAG)</h4>
+                                <p>Đỉnh: <strong>Process</strong> và <strong>Resource type</strong></p>
+                                <ul>
+                                    <li>Request: <code>P → R</code></li>
+                                    <li>Assignment: <code>R → P</code></li>
+                                </ul>
+                            </div>
+                            <div class="col-box">
+                                <h4>Wait-for Graph (WFG)</h4>
+                                <p>Chỉ có đỉnh <strong>Process</strong></p>
+                                <p><code>Pi → Pj</code>: Pi chờ tài nguyên do Pj giữ</p>
+                                <p class="note">Dùng khi mỗi loại tài nguyên có 1 instance</p>
+                            </div>
+                        </div>
+                        <div class="warning-box">
+                            <strong>⚠️ Quan trọng về chu trình:</strong>
+                            <ul>
+                                <li>Mỗi resource type <strong>1 instance</strong>: Có chu trình ⇔ Deadlock</li>
+                                <li><strong>Nhiều instance</strong>: Có chu trình <strong>chưa chắc</strong> deadlock</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="handling">
+                        <h2>🛠️ 4 Hướng Xử Lý Deadlock</h2>
+                        <div class="handling-grid">
+                            <div class="handling-card ignore">
+                                <h4>1. Ignore</h4>
+                                <p>Chấp nhận deadlock xảy ra (hiếm)</p>
+                            </div>
+                            <div class="handling-card prevent">
+                                <h4>2. Prevention</h4>
+                                <p>Phá <strong>1 trong 4</strong> điều kiện Coffman</p>
+                                <span class="example">VD: Áp thứ tự cấp phát → phá circular wait</span>
+                            </div>
+                            <div class="handling-card avoid">
+                                <h4>3. Avoidance</h4>
+                                <p>Né <strong>unsafe state</strong></p>
+                                <span class="example">Banker Algorithm</span>
+                            </div>
+                            <div class="handling-card recover">
+                                <h4>4. Detection & Recovery</h4>
+                                <p>Phát hiện rồi phục hồi</p>
+                                <span class="example">Kill process, thu hồi tài nguyên</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="banker">
+                        <h2>🏦 Banker Algorithm</h2>
+                        <h3>Các ma trận cần biết:</h3>
+                        <div class="table-container">
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ma trận</th>
+                                        <th>Ý nghĩa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><code>Available</code></td><td>Tài nguyên hiện có (Work ban đầu)</td></tr>
+                                    <tr><td><code>Max</code></td><td>Tài nguyên tối đa mỗi process cần</td></tr>
+                                    <tr><td><code>Allocation</code></td><td>Tài nguyên đã cấp cho mỗi process</td></tr>
+                                    <tr><td><code>Need</code></td><td><strong>Need = Max - Allocation</strong></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3>Thuật toán tìm chuỗi an toàn:</h3>
+                        <div class="algorithm-steps">
+                            <div class="algo-step"><span>1</span>Work = Available; Finish[i] = false</div>
+                            <div class="algo-step"><span>2</span>Tìm i: Finish[i] = false AND Need[i] ≤ Work</div>
+                            <div class="algo-step"><span>3</span>Work = Work + Allocation[i]; Finish[i] = true</div>
+                            <div class="algo-step"><span>4</span>Lặp đến khi không tìm được</div>
+                        </div>
+                        <div class="result-box">
+                            <p>✅ Tất cả Finish = true → <strong>SAFE</strong> (có chuỗi an toàn)</p>
+                            <p>❌ Ngược lại → <strong>UNSAFE</strong></p>
+                        </div>
+                        <div class="tip-box">
+                            <strong>💡 Mẹo làm bài:</strong> Khi đề hỏi "Request của Pi có được cấp không?":
+                            <ol>
+                                <li>Kiểm tra: Request ≤ Need AND Request ≤ Available</li>
+                                <li>Giả lập cấp phát</li>
+                                <li>Chạy Banker xem còn safe không</li>
+                            </ol>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </section>
+
+        <!-- Chapter 7: Memory -->
+        <section id="ch7" class="page">
+            <div class="page-header">
+                <span class="chapter-badge">Chương 7</span>
+                <h1>Quản Lý Bộ Nhớ</h1>
+                <p class="page-desc">Paging, Segmentation, TLB & EAT</p>
+            </div>
+            <div class="content-wrapper">
+                <aside class="toc">
+                    <h4>Mục lục</h4>
+                    <ul>
+                        <li><a href="#partition">Phân vùng</a></li>
+                        <li><a href="#fit">Thuật toán Fit</a></li>
+                        <li><a href="#paging">Paging</a></li>
+                        <li><a href="#tlb">TLB & EAT</a></li>
+                    </ul>
+                </aside>
+                <article class="content">
+                    <section class="theory-section" id="partition">
+                        <h2>📦 Phân Vùng Bộ Nhớ</h2>
+                        <div class="two-col">
+                            <div class="col-box">
+                                <h4>Fixed Partition</h4>
+                                <p>Dễ quản lý</p>
+                                <p class="bad">❌ Internal fragmentation (thừa trong partition)</p>
+                            </div>
+                            <div class="col-box">
+                                <h4>Variable Partition</h4>
+                                <p>Linh hoạt</p>
+                                <p class="bad">❌ External fragmentation (nhiều lỗ trống rời rạc)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="fit">
+                        <h2>🎯 4 Thuật Toán Chọn Lỗ Trống</h2>
+                        <div class="fit-grid">
+                            <div class="fit-card first">
+                                <h4>First-fit</h4>
+                                <p>Lỗ <strong>đầu tiên</strong> đủ lớn</p>
+                                <span class="tag">Nhanh</span>
+                            </div>
+                            <div class="fit-card best">
+                                <h4>Best-fit</h4>
+                                <p>Lỗ <strong>vừa khít</strong> nhất</p>
+                                <span class="tag">Dễ tạo lỗ nhỏ</span>
+                            </div>
+                            <div class="fit-card worst">
+                                <h4>Worst-fit</h4>
+                                <p>Lỗ <strong>lớn nhất</strong></p>
+                                <span class="tag">Còn lại vẫn to</span>
+                            </div>
+                            <div class="fit-card next">
+                                <h4>Next-fit</h4>
+                                <p>Tiếp tục từ <strong>vị trí cấp phát trước</strong></p>
+                                <span class="tag">Không quay đầu</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="paging">
+                        <h2>📄 Paging</h2>
+                        <div class="definition-box">
+                            <p>Chia bộ nhớ <strong>đều</strong> thành các page/frame có kích thước bằng nhau.</p>
+                        </div>
+                        <h3>Công thức dịch địa chỉ:</h3>
+                        <div class="formula-box">
+                            <p>Địa chỉ logic = <code>(p, d)</code> → page number, offset</p>
+                            <p>Địa chỉ vật lý = <code>(frame(p), d)</code></p>
+                        </div>
+                        <div class="tip-box">
+                            <strong>💡 Tính số bit offset:</strong>
+                            <p>Page size = 2<sup>k</sup> bytes → offset = <strong>k bit</strong></p>
+                            <p><em>VD: 4KB = 2<sup>12</sup> → offset 12 bit</em></p>
+                        </div>
+                        <div class="compare-box">
+                            <h4>Paging vs Segmentation</h4>
+                            <ul>
+                                <li><strong>Paging:</strong> Chia <strong>đều</strong> (page/frame bằng nhau)</li>
+                                <li><strong>Segmentation:</strong> Chia <strong>không đều</strong> theo đoạn logic (code/data/stack)</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="tlb">
+                        <h2>⚡ TLB & EAT</h2>
+                        <div class="definition-box">
+                            <p><strong>TLB (Translation Lookaside Buffer):</strong> Cache ánh xạ page → frame</p>
+                        </div>
+                        <h3>Công thức EAT (Effective Access Time):</h3>
+                        <div class="formula-highlight">
+                            <span class="formula">EAT = ε + x(2 − α)</span>
+                        </div>
+                        <div class="variables">
+                            <p><code>α</code> = TLB hit ratio</p>
+                            <p><code>ε</code> = Thời gian tra TLB</p>
+                            <p><code>x</code> = Thời gian 1 lần truy cập RAM</p>
+                        </div>
+                        <div class="example-box">
+                            <strong>📝 Ví dụ:</strong> α = 0.9, x = 240ns, ε = 36ns
+                            <p>EAT = 36 + 240(2 - 0.9) = 36 + 240(1.1) = 36 + 264 = <strong>300ns</strong></p>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </section>
+
+        <!-- Chapter 8: Virtual Memory -->
+        <section id="ch8" class="page">
+            <div class="page-header">
+                <span class="chapter-badge">Chương 8</span>
+                <h1>Bộ Nhớ Ảo (Virtual Memory)</h1>
+                <p class="page-desc">Demand Paging, Page Replacement, Thrashing</p>
+            </div>
+            <div class="content-wrapper">
+                <aside class="toc">
+                    <h4>Mục lục</h4>
+                    <ul>
+                        <li><a href="#demand">Demand Paging</a></li>
+                        <li><a href="#pagefault">Page Fault</a></li>
+                        <li><a href="#replacement">Page Replacement</a></li>
+                        <li><a href="#thrashing">Thrashing</a></li>
+                    </ul>
+                </aside>
+                <article class="content">
+                    <section class="theory-section" id="demand">
+                        <h2>📥 Demand Paging</h2>
+                        <div class="highlight-box">
+                            <p>Chỉ nạp trang <strong>khi cần</strong> → gặp trang chưa có trong RAM thì <strong>page fault</strong></p>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="pagefault">
+                        <h2>⚠️ Quy Trình Xử Lý Page Fault</h2>
+                        <div class="process-steps">
+                            <div class="process-step"><span>1</span>Trap vào kernel (OS)</div>
+                            <div class="process-step"><span>2</span>Kiểm tra hợp lệ (illegal → kill)</div>
+                            <div class="process-step"><span>3</span>Tìm frame trống hoặc chọn victim</div>
+                            <div class="process-step"><span>4</span>Nếu victim bẩn (dirty) → ghi ra đĩa</div>
+                            <div class="process-step"><span>5</span>Đọc trang cần vào frame</div>
+                            <div class="process-step"><span>6</span>Cập nhật page table/TLB</div>
+                            <div class="process-step"><span>7</span>Cho tiến trình chạy lại lệnh bị lỗi</div>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="replacement">
+                        <h2>🔄 Thuật Toán Thay Trang</h2>
+                        <div class="replacement-grid">
+                            <div class="replacement-card fifo">
+                                <h4>FIFO</h4>
+                                <p>Thay trang <strong>vào sớm nhất</strong></p>
+                                <div class="warning-tag">⚠️ Belady Anomaly</div>
+                                <p class="small">Page fault có thể tăng khi tăng số frame!</p>
+                            </div>
+                            <div class="replacement-card opt">
+                                <h4>OPT (Optimal)</h4>
+                                <p>Thay trang <strong>dùng xa nhất</strong> trong tương lai</p>
+                                <div class="best-tag">✨ Tốt nhất</div>
+                                <p class="small">Chỉ dùng để so sánh (không thực tế)</p>
+                            </div>
+                            <div class="replacement-card lru">
+                                <h4>LRU</h4>
+                                <p>Thay trang <strong>ít dùng gần đây</strong> nhất</p>
+                                <div class="good-tag">✅ Gần OPT</div>
+                                <p class="small">Thực tế và hiệu quả</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="theory-section" id="thrashing">
+                        <h2>🌀 Thrashing & Working Set</h2>
+                        <div class="definition-box">
+                            <p><strong>Thrashing:</strong> Page fault liên tục do <strong>thiếu frame</strong></p>
+                        </div>
+                        <div class="definition-box">
+                            <p><strong>Working Set (Δ):</strong> Tập trang được dùng trong cửa sổ thời gian Δ</p>
+                        </div>
+                        <div class="warning-box">
+                            <strong>⚠️ Khi xảy ra thrashing:</strong>
+                            <p>Tổng working set > số frame → thrashing</p>
+                            <p><strong>Giải pháp:</strong> Giảm đa chương / swap bớt tiến trình</p>
+                        </div>
+                    </section>
+
+                    <section class="theory-section">
+                        <h2>💾 Swap & Pagefile</h2>
+                        <div class="note-box">
+                            <p>Windows: <code>pagefile.sys</code></p>
+                            <p>Linux: swap partition hoặc swap file</p>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </section>
+
+        <!-- Quiz Page -->
+        <section id="quiz" class="page">
+            <div class="page-header">
+                <span class="chapter-badge quiz-badge">📝 Trắc Nghiệm</span>
+                <h1>Bộ Câu Hỏi Ôn Tập</h1>
+                <p class="page-desc">Luyện tập với các câu hỏi từ đề thi các năm</p>
+            </div>
+            <div class="quiz-controls">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-chapter="all">Tất cả</button>
+                    <button class="filter-btn" data-chapter="ch5">Ch5</button>
+                    <button class="filter-btn" data-chapter="ch6">Ch6</button>
+                    <button class="filter-btn" data-chapter="ch7">Ch7</button>
+                    <button class="filter-btn" data-chapter="ch8">Ch8</button>
+                </div>
+                <div class="quiz-stats">
+                    <span class="stat-item">Câu đúng: <span id="correct-count">0</span></span>
+                    <span class="stat-item">Tổng: <span id="total-answered">0</span>/<span id="total-questions">0</span></span>
+                </div>
+            </div>
+            <div class="quiz-container" id="quiz-container">
+                <!-- Quiz questions will be inserted here by JavaScript -->
+            </div>
+            <div class="quiz-actions">
+                <button class="btn-reset" id="reset-quiz">🔄 Làm lại</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>IT007 - Hệ Điều Hành | Ôn tập cuối kỳ 🚀</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
