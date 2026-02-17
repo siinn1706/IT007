@@ -5,7 +5,7 @@
 
 body {
     margin: 0;
-    padding: 10px;
+    padding: clamp(5px, 2vw, 10px); /* Responsive padding */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,6 +14,7 @@ body {
     background-color: #b71c1c; /* Đỏ sậm chuẩn Tết */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
+    overflow-y: auto; /* Allow vertical scroll if needed */
 }
 
 .title {
@@ -129,6 +130,10 @@ body {
 }
 
 /* --- CSS cho Modal Popup --- */
+:root {
+    --modal-margin: 15px;
+}
+
 .modal {
     display: none; /* Ẩn mặc định, sẽ dùng JS để chuyển thành flex */
     position: fixed;
@@ -146,11 +151,11 @@ body {
 
 .modal-content {
     background-color: #fffbe6; /* Màu nền kem sáng */
-    margin: 15px;
+    margin: var(--modal-margin);
     padding: clamp(20px, 5vw, 30px);
     border: 5px solid #b71c1c;
     border-radius: 20px;
-    width: calc(100% - 30px);
+    width: calc(100% - var(--modal-margin) * 2); /* Derived from margin */
     max-width: 400px;
     text-align: center;
     position: relative;
@@ -219,10 +224,6 @@ body {
 
 /* Media queries for mobile optimization */
 @media screen and (max-width: 480px) {
-    body {
-        padding: 5px;
-    }
-    
     .title {
         margin-bottom: 15px;
     }
@@ -248,7 +249,7 @@ body {
     }
     
     .modal-content {
-        margin: 10px;
+        --modal-margin: 10px;
         border-width: 3px;
         border-radius: 15px;
     }
@@ -273,11 +274,7 @@ body {
 }
 
 /* Landscape mode on mobile */
-@media screen and (max-height: 600px) and (orientation: landscape) {
-    body {
-        padding: 5px;
-    }
-    
+@media screen and (max-height: 500px) and (orientation: landscape) {
     .title {
         font-size: clamp(18px, 4vw, 24px);
         margin-bottom: 10px;
