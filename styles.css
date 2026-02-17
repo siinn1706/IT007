@@ -1,7 +1,11 @@
 /* styles.css */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    padding: 0;
+    padding: clamp(5px, 2vw, 10px); /* Responsive padding */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,22 +13,26 @@ body {
     min-height: 100vh;
     background-color: #b71c1c; /* Đỏ sậm chuẩn Tết */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto; /* Allow vertical scroll if needed */
 }
 
 .title {
     color: #ffeb3b;
-    font-size: 36px;
+    font-size: clamp(24px, 6vw, 36px); /* Responsive font size */
     text-transform: uppercase;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 30px;
+    margin-bottom: clamp(15px, 4vh, 30px);
     text-align: center;
+    padding: 0 10px;
 }
 
 .wheel-container {
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: min(320px, 85vw); /* Responsive width */
+    height: min(320px, 85vw); /* Maintain aspect ratio */
+    max-width: 400px;
+    max-height: 400px;
 }
 
 /* Mũi tên chỉ định */
@@ -76,7 +84,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-weight: 900;
-    font-size: 24px;
+    font-size: clamp(18px, 5vw, 24px); /* Responsive font size */
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
@@ -85,9 +93,9 @@ body {
 .text-red { color: #d32f2f; }
 
 .spin-btn {
-    margin-top: 40px;
-    padding: 15px 40px;
-    font-size: 22px;
+    margin-top: clamp(20px, 5vh, 40px);
+    padding: clamp(12px, 3vw, 15px) clamp(30px, 8vw, 40px);
+    font-size: clamp(18px, 4vw, 22px); /* Responsive font size */
     font-weight: bold;
     color: #b71c1c;
     background-color: #ffca28;
@@ -97,6 +105,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.2s;
     text-transform: uppercase;
+    touch-action: manipulation; /* Better touch response on mobile */
 }
 
 .spin-btn:hover {
@@ -121,6 +130,10 @@ body {
 }
 
 /* --- CSS cho Modal Popup --- */
+:root {
+    --modal-margin: 15px;
+}
+
 .modal {
     display: none; /* Ẩn mặc định, sẽ dùng JS để chuyển thành flex */
     position: fixed;
@@ -138,11 +151,11 @@ body {
 
 .modal-content {
     background-color: #fffbe6; /* Màu nền kem sáng */
-    margin: auto;
-    padding: 30px;
+    margin: var(--modal-margin);
+    padding: clamp(20px, 5vw, 30px);
     border: 5px solid #b71c1c;
     border-radius: 20px;
-    width: 80%;
+    width: calc(100% - var(--modal-margin) * 2); /* Derived from margin */
     max-width: 400px;
     text-align: center;
     position: relative;
@@ -167,8 +180,8 @@ body {
 
 /* Style cho ảnh mặt ngựa */
 .horse-img {
-    width: 120px;
-    height: 120px;
+    width: clamp(100px, 25vw, 120px); /* Responsive size */
+    height: clamp(100px, 25vw, 120px);
     object-fit: contain; /* Đảm bảo ảnh không bị méo */
     margin-bottom: 20px;
     border-radius: 50%;
@@ -180,18 +193,18 @@ body {
 #modalTitle {
     color: #b71c1c;
     margin: 10px 0;
-    font-size: 28px;
+    font-size: clamp(22px, 5vw, 28px); /* Responsive font */
 }
 
 .prize-text {
-    font-size: 32px;
+    font-size: clamp(26px, 6vw, 32px); /* Responsive font */
     font-weight: bold;
     color: #d32f2f;
     margin: 10px 0;
 }
 
 .wishes-text {
-    font-size: 18px;
+    font-size: clamp(16px, 4vw, 18px); /* Responsive font */
     color: #555;
     font-style: italic;
     margin-top: 15px;
@@ -207,4 +220,73 @@ body {
 @keyframes zoomIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+/* Media queries for mobile optimization */
+@media screen and (max-width: 480px) {
+    .title {
+        margin-bottom: 15px;
+    }
+    
+    .wheel-container {
+        width: min(280px, 90vw);
+        height: min(280px, 90vw);
+    }
+    
+    .pointer {
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 24px solid #fff;
+    }
+    
+    .wheel {
+        border-width: 6px;
+    }
+    
+    .spin-btn {
+        margin-top: 20px;
+        white-space: nowrap;
+    }
+    
+    .modal-content {
+        --modal-margin: 10px;
+        border-width: 3px;
+        border-radius: 15px;
+    }
+    
+    .close-btn {
+        font-size: 24px;
+        top: 5px;
+        right: 10px;
+    }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 360px) {
+    .wheel-container {
+        width: min(240px, 90vw);
+        height: min(240px, 90vw);
+    }
+    
+    .slice span {
+        top: 15px;
+    }
+}
+
+/* Landscape mode on mobile */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .title {
+        font-size: clamp(18px, 4vw, 24px);
+        margin-bottom: 10px;
+    }
+    
+    .wheel-container {
+        width: min(200px, 35vh);
+        height: min(200px, 35vh);
+    }
+    
+    .spin-btn {
+        margin-top: 10px;
+        padding: 8px 24px;
+    }
 }
