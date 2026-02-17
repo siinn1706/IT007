@@ -4,130 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vòng Quay May Mắn - Lì Xì Tết</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: #b71c1c; /* Đỏ sậm chuẩn Tết */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-        }
-
-        .title {
-            color: #ffeb3b;
-            font-size: 36px;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .wheel-container {
-            position: relative;
-            width: 320px;
-            height: 320px;
-        }
-
-        /* Mũi tên chỉ định */
-        .pointer {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 30px solid #fff;
-            z-index: 10;
-            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.4));
-        }
-
-        /* Vòng quay chia 6 phần bằng nhau (mỗi phần 60 độ) */
-        .wheel {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: conic-gradient(
-                #e53935 0 60deg,    /* Đỏ */
-                #ffb300 60deg 120deg,  /* Vàng */
-                #e53935 120deg 180deg,
-                #ffb300 180deg 240deg,
-                #e53935 240deg 300deg,
-                #ffb300 300deg 360deg
-            );
-            border: 8px solid #ffca28;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.3);
-            position: relative;
-            transition: transform 4s cubic-bezier(0.17, 0.67, 0.1, 1);
-        }
-
-        /* Chữ bên trong vòng quay */
-        .slice {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            /* Đặt chữ vào giữa mỗi góc 60 độ */
-            transform: rotate(calc(var(--i) * 60deg + 30deg));
-        }
-
-        .slice span {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-weight: 900;
-            font-size: 24px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        /* Căn màu chữ cho nổi bật trên nền */
-        .text-yellow { color: #ffeb3b; }
-        .text-red { color: #d32f2f; }
-
-        .spin-btn {
-            margin-top: 40px;
-            padding: 15px 40px;
-            font-size: 22px;
-            font-weight: bold;
-            color: #b71c1c;
-            background-color: #ffca28;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s;
-            text-transform: uppercase;
-        }
-
-        .spin-btn:hover {
-            background-color: #ffeb3b;
-            transform: scale(1.05);
-        }
-
-        .spin-btn:active {
-            transform: scale(0.95);
-        }
-
-        .spin-btn:disabled {
-            background-color: #ccc;
-            color: #666;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        #result {
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            min-height: 35px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
@@ -145,78 +23,22 @@
         </div>
     </div>
 
-    <button class="spin-btn" id="spinBtn" onclick="spinWheel()">Quay Ngay</button>
-    <div id="result"></div>
+    <button class="spin-btn" id="spinBtn">Quay Ngay</button>
+    <div id="result-placeholder"></div>
 
-    <script>
-        // Cấu hình tỷ lệ thực tế ẩn dưới background (tổng = 100%)
-        const prizes = [
-            { label: '500k', index: 0, weight: 18 },
-            { label: '200k', index: 1, weight: 30 },
-            { label: '100k', index: 2, weight: 25 },
-            { label: '50k',  index: 3, weight: 9 },
-            { label: '20k',  index: 4, weight: 9 },
-            { label: '10k',  index: 5, weight: 9 }
-        ];
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="horseImage" src="" alt="Mặt ngựa cảm xúc" class="horse-img">
+            <h2 id="modalTitle">Chúc Mừng!</h2>
+            <p id="modalPrize" class="prize-text"></p>
+            <p id="modalWishes" class="wishes-text"></p>
+        </div>
+    </div>
 
-        let currentRotation = 0;
-        let isSpinning = false;
+    <audio id="tickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-ball-tap-2073.mp3" preload="auto" loop></audio>
+    <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" preload="auto"></audio>
 
-        // Hàm random theo tỷ lệ (weighted random)
-        function getRandomPrize() {
-            let rand = Math.random() * 100;
-            let sum = 0;
-            
-            for (let prize of prizes) {
-                sum += prize.weight;
-                if (rand <= sum) {
-                    return prize;
-                }
-            }
-            return prizes[prizes.length - 1]; // Fallback an toàn
-        }
-
-        function spinWheel() {
-            if (isSpinning) return;
-            isSpinning = true;
-
-            const btn = document.getElementById('spinBtn');
-            const resultText = document.getElementById('result');
-            const wheel = document.getElementById('wheel');
-            
-            btn.disabled = true;
-            resultText.innerText = "";
-
-            // 1. Xác định kết quả quay bằng thuật toán tỷ lệ thực tế
-            const winningPrize = getRandomPrize();
-
-            // 2. Tính toán góc quay để hiển thị UI tương ứng
-            // Ô số index có tâm ở góc (index * 60 + 30) độ.
-            // Để đưa tâm ô đó lên vị trí mũi tên (0 độ), ta cần góc đích là 360 - (index * 60 + 30)
-            const targetRotation = 360 - (winningPrize.index * 60 + 30);
-
-            // 3. Xử lý hiệu ứng quay vòng (quay thêm 6 vòng = 2160 độ để tạo cảm giác hồi hộp)
-            const extraSpins = 6 * 360; 
-            
-            // Tính toán chênh lệch góc quay so với vị trí hiện tại để đảm bảo bánh xe luôn quay tới phía trước
-            let currentMod = currentRotation % 360;
-            let diff = targetRotation - currentMod;
-            if (diff < 0) diff += 360; 
-
-            // Tổng góc quay cuối cùng
-            const totalRotation = currentRotation + extraSpins + diff;
-
-            // Áp dụng CSS
-            wheel.style.transform = `rotate(${totalRotation}deg)`;
-            currentRotation = totalRotation;
-
-            // Chờ animation kết thúc (4s khớp với CSS)
-            setTimeout(() => {
-                isSpinning = false;
-                btn.disabled = false;
-                resultText.innerText = `🧧 Chúc mừng! Bạn nhận được Lì Xì ${winningPrize.label} 🧧`;
-            }, 4000);
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
